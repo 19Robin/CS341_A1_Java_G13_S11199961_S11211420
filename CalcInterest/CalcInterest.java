@@ -71,31 +71,31 @@ public class CalcInterest {
 
         // Test Cases from Boundary Value Analysis (BVA)
         bvaResults.add(runTestCase(5000, 5, 1, 2000.0f));        // TC001
-        bvaResults.add(runTestCase(100000, 5, 1, 32500.0f)); // TC002
+        bvaResults.add(runTestCase(100000, 5, 1, 32500.0f));     // TC002
         bvaResults.add(runTestCase(4999.99, 5, 1, -1.0f));       // TC003
-        bvaResults.add(runTestCase(99999, 10, 1, 64999.35f)); // TC004
-        bvaResults.add(runTestCase(100000, 10, 1, 65000.0f)); // TC005
-        bvaResults.add(runTestCase(499999, 10, 1, 324999.35f)); // TC006
-        bvaResults.add(runTestCase(500000, 11, 1, 302500.0f)); // TC007
+        bvaResults.add(runTestCase(99999, 10, 1, 64999.35f));    // TC004
+        bvaResults.add(runTestCase(100000, 10, 1, 65000.0f));    // TC005
+        bvaResults.add(runTestCase(499999, 10, 1, 324999.35f));  // TC006
+        bvaResults.add(runTestCase(500000, 11, 1, 302500.0f));   // TC007
         bvaResults.add(runTestCase(5000, 5, 2, 3000.0f));        // TC008
-        bvaResults.add(runTestCase(99999, 5, 2, 59999.4f)); // TC009
-        bvaResults.add(runTestCase(100000, 9, 2, 76500.0f)); // TC010
-        bvaResults.add(runTestCase(499999, 9, 2, 382499.235f)); // TC011
-        bvaResults.add(runTestCase(500000, 11, 2, 385000.0f)); // TC012
-        bvaResults.add(runTestCase(5000, 11, 1, 3025.0f));  // TC013
+        bvaResults.add(runTestCase(99999, 5, 2, 59999.4f));      // TC009
+        bvaResults.add(runTestCase(100000, 9, 2, 76500.0f));     // TC010
+        bvaResults.add(runTestCase(499999, 9, 2, 382499.235f));  // TC011
+        bvaResults.add(runTestCase(500000, 11, 2, 385000.0f));   // TC012
+        bvaResults.add(runTestCase(5000, 11, 1, 3025.0f));       // TC013
         bvaResults.add(runTestCase(5000, 0, 1, -1.0f));          // TC014
         bvaResults.add(runTestCase(5000, 5, 0, -1.0f));          // TC015
         bvaResults.add(runTestCase(5000, 5, 3, -1.0f));          // TC016
 
         // Test Cases from Equivalence Partitioning (EP)
         epResults.add(runTestCase(80000, 5, 1, 32000.0f));      // TC001 EP
-        epResults.add(runTestCase(200000, 7, 2, 119000.0f)); // TC002 EP
-        epResults.add(runTestCase(600000, 12, 1, 396000.0f)); // TC003 EP
-        epResults.add(runTestCase(600000, 11, 2, 462000.0f)); // TC004 EP
+        epResults.add(runTestCase(200000, 7, 2, 119000.0f));    // TC002 EP
+        epResults.add(runTestCase(600000, 12, 1, 396000.0f));   // TC003 EP
+        epResults.add(runTestCase(600000, 11, 2, 462000.0f));   // TC004 EP
         epResults.add(runTestCase(4000, 5, 1, -1.0f));          // TC005 EP
         epResults.add(runTestCase(6000, 1, 2, 720.0f));         // TC006 EP
         epResults.add(runTestCase(50000, 11, 1, 30250.0f));     // TC007 EP
-        epResults.add(runTestCase(300000, 5, 2, 127500.0f));     // TC008 EP
+        epResults.add(runTestCase(300000, 5, 2, 127500.0f));    // TC008 EP
         epResults.add(runTestCase(-50000, 5, 2, -1.0f));        // TC009 EP
         epResults.add(runTestCase(100000, 0, 1, -1.0f));        // TC010 EP
         epResults.add(runTestCase(50000, -1, 1, -1.0f));        // TC011 EP
@@ -111,13 +111,13 @@ public class CalcInterest {
     }
 
     // A method to run a test case and return results as a string
-    private static String runTestCase(double loanAmount, int duration, int loanType, float expected) {
-        float actual = computeLoanInterest(loanAmount, duration, loanType);
+    private static String runTestCase(double loanAmount, int yearLoan, int loanType, float expected) {
+        float actual = computeLoanInterest(loanAmount, yearLoan, loanType);
         String result = (Math.abs(actual - expected) < 0.01) ? "PASSED" : "FAILED"; // Adjusted for float comparison
-        return loanAmount + ", " + duration + ", " + loanType + ", " + expected + ", " + actual + ", " + result;
+        return loanAmount + ", " + yearLoan + ", " + loanType + ", " + expected + ", " + actual + ", " + result;
     }
 
-    // Method to print the results in a formatted table
+    // Method to print the results
     private static void printResults(List<String> results, String testType) {
         System.out.println("------------------------------------------------------------------------------------------");
         System.out.printf("| %-10s | %-12s | %-8s | %-4s | %-10s | %-10s | %-6s |\n", "Test Case ID", "Loan Amount", "Loan Year", "Loan Type", "Expected", "Actual", "Result");
